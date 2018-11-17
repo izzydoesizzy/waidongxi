@@ -1,0 +1,9 @@
+.appicon {
+	border: 0.9px solid #e2e2e2;
+    border-radius: 40px;
+}
+
+.noborder {
+	border: 0px;
+	border-radius: 0px;
+}
