@@ -45,8 +45,8 @@ $(document).ready(function () {
     $(function(){
 
         // Instantiate MixItUp:
-        var mixer = mixitup('#apps');
-        $('#apps').mixItUp();
+        var mixer = mixitup('#faqs');
+        $('#faqs').mixItUp();
 
     });
 
