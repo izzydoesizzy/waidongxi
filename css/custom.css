@@ -7,3 +7,15 @@
 	border: 0px;
 	border-radius: 0px;
 }
+
+.faq-img {
+	margin-bottom: 50px;
+}
+
+.customers-content .item img {
+    display: block;
+    width: auto;
+    -webkit-filter: none;
+    filter: none;
+    transition: all 0.3s ease-in;
+}

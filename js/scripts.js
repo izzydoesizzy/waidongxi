@@ -192,10 +192,10 @@ jQuery(function ($) {
 
     // 6. customers slider
     $('.customers-slider').owlCarousel({
-        autoplay: true,
+        autoplay: false,
         loop: true,
-        margin:25,
-        dots:false,
+        margin:50,
+        dots:true,
         slideTransition:'linear',
         autoplayTimeout:4500,
         autoplayHoverPause:true,
@@ -308,5 +308,7 @@ jQuery(function ($) {
         });
 
     }());
+
+    
 
 }); // JQuery end
