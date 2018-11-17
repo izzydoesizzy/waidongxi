@@ -1,260 +1,312 @@
-/* Template: Riga - Mobile App Landing Page Template
-   Author: InovatikThemes
-   Created: Apr 2018
-   Description: Custom JS file
-*/
+/*================
+ Template Name: ApeTech - App Landing Page Template
+ Description: ApeTech is a powerful 100% Responsive app, product, and  Software landing page template.
+ Version: 1.0
+ Author: https://themeforest.net/user/htmllover/portfolio
+ =======================*/
 
+// TABLE OF CONTENTS
 
-(function($) {
-    "use strict"; 
-	
-	/* Preloader */
-	$(window).on('load', function() {
-		var preloaderFadeOutTime = 500;
-		function hidePreloader() {
-			var preloader = $('.spinner-wrapper');
-			setTimeout(function() {
-				preloader.fadeOut(preloaderFadeOutTime);
-			}, 500);
-		}
-		hidePreloader();
-	});
+//  1. preloader
+//  2. easeScroll
+//  3. navbar or menu
+//  4. client testimonial
+//  5. hero background slider
+//  6. customers slider
+//  7. magnify popup video
+//  8. ytplayer for hero background video
+//  9. typed
+// 10. back to top
 
-	
-	/* Navbar Scripts */
-	// jQuery for page scrolling feature - requires jQuery Easing plugin
-	$(function() {
-		$(document).on('click', 'a.page-scroll', function(event) {
-			var $anchor = $(this);
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top
-			}, 600, 'easeInOutExpo');
-			$('input:checkbox').prop('checked', false); // closes the responsive menu on menu item click
-			event.preventDefault();
-		});
-	});
+jQuery(function ($) {
 
+    'use strict';
 
-	/* Rotating Text Morphtext */
-	$("#js-rotating").Morphext({
-		// The [in] animation type. Refer to Animate.css for a list of available animations.
-		animation: "fadeIn",
-		// An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
-		separator: ",",
-		// The delay between the changing of each phrase in milliseconds.
-		speed: 2000,
-		complete: function () {
-			// Called after the entrance animation is executed.
-		}
-	});
-
-
-	/* Image Slider Header Swiper */
-	var swiper1 = new Swiper('.imageSliderHeader', {
-        autoplay: {
-			delay: 4000,
-		},
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-		loop: false,
+    //  1. preloader
+    $(window).ready(function() {
+        $('#preloader').delay(200).fadeOut('fade');
     });
 
-
-	/* Cards Slider Swiper */
-	var cardsSlider = new Swiper('.cardsSlider', {
-		autoplay: {
-			delay: 4000,
-		},
-        loop: false,
-        pagination: {
-			el: '.swiper-pagination',
-			type: 'bullets',
-			clickable: true,
-		},
-		slidesPerView: 4,
-		spaceBetween: 0,
-        breakpoints: {
-			1200: {
-				slidesPerView: 3,
-				spaceBetween: 30,
-			},
-			992: {
-				slidesPerView: 2,
-				spaceBetween: 30,
-			},
-			540: {
-				slidesPerView: 1,
-				spaceBetween: 20,
-			}
-		}
-	});
+    //  2. easeScroll
+    $("html").easeScroll();
 
 
-	/* Image Slider Gallery Swiper */
-	var imageSliderGallery = new Swiper('.imageSliderGallery', {
-		autoplay: {
-			delay: 3000,
-		},
-        loop: false,
-		slidesPerView: 6,
-		spaceBetween: 30,
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-		breakpoints: {
-			992: {
-				slidesPerView: 3,
-				spaceBetween: 30
-			},
-			768: {
-				slidesPerView: 2,
-				spaceBetween: 20
-			},
-			576: {
-				slidesPerView: 1,
-				spaceBetween: 10
-			}
-		}
-	});
-
-
-	/* Image Slider Gallery Magnific Popup */
-	$('.popup-link').magnificPopup({
-		fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
-		removalDelay: 200,
-		type: 'image',
-		callbacks: {
-			beforeOpen: function() {
-				this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure ' + this.st.el.attr('data-effect'));
-			}
-		},
-		gallery:{
-			enabled:true //enable gallery mode
-		}
-	});
-
-
-	/* Lightbox Magnific PopUp */
-	$('.popup-with-move-anim').magnificPopup({
-		type: 'inline',
-		fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
-		fixedBgPos: true,
-		overflowY: 'auto',
-		closeBtnInside: true,
-		preloader: false,
-		midClick: true,
-		removalDelay: 200,
-		mainClass: 'my-mfp-slide-bottom'
-	});
-
-
-	/* Statistics Numbers CountTo */
-	var a = 0;
-	$(window).scroll(function() {
-		if ($('#counter').length) { // checking if CountTo section exists in the page, if not it will not run the script and avoid errors	
-			var oTop = $('#counter').offset().top - window.innerHeight;
-			if (a == 0 && $(window).scrollTop() > oTop) {
-			$('.counter-value').each(function() {
-				var $this = $(this),
-				countTo = $this.attr('data-count');
-				$({
-				countNum: $this.text()
-				}).animate({
-					countNum: countTo
-				},
-				{
-					duration: 2000,
-					easing: 'swing',
-					step: function() {
-					$this.text(Math.floor(this.countNum));
-					},
-					complete: function() {
-					$this.text(this.countNum);
-					//alert('finished');
-					}
-				});
-			});
-			a = 1;
-			}
-		}
-	});
-	
-	
-	/* Contact Form */
-    $("#ContactForm").validator().on("submit", function(event) {
-    	if (event.isDefaultPrevented()) {
-            // handle the invalid form...
-            formCError();
-            submitCMSG(false, "Please fill all fields!");
+    //  3. navbar or menu
+    $(window).scroll(function() {
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav-collapse");
         } else {
-            // everything looks good!
-            event.preventDefault();
-            submitCForm();
+            $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
     });
 
-    function submitCForm() {
-        // initiate variables with form content
-		var name = $("#cname").val();
-		var email = $("#cemail").val();
-        var message = $("#cmessage").val();
-        
-        $.ajax({
-            type: "POST",
-            url: "php/contactform-process.php",
-            data: "name=" + name + "&email=" + email + "&message=" + message, 
-            success: function(text) {
-                if (text == "success") {
-                    formCSuccess();
-                } else {
-                    formCError();
-                    submitCMSG(false, text);
-                }
+    //jQuery for page scrolling feature - requires jQuery Easing plugin
+    $(function() {
+        $(document).on('click', 'a.page-scroll', function(event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.attr('href')).offset().top-59
+            }, 900, 'easeInOutExpo');
+            event.preventDefault();
+        });
+    });
+    // closes the responsive menu on menu item click
+    $(".navbar-nav li a").on("click", function(event) {
+        if (!$(this).parent().hasClass('dropdown'))
+            $(".navbar-collapse").collapse('hide');
+    });
+
+    //nav menu active color
+    $('.header-nav li').on("click", function(e){
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+
+
+    //header slider
+    $('.mobile-slider')['owlCarousel']({
+        loop: true,
+        margin: 30,
+        autoplay: true,
+        dots: false,
+        items: 1
+    });
+    var u = $(".mobile-slider"),
+        p = $("#next"),
+        m = $("#prev");
+    p.on("click", function() {
+        u.trigger("next.owl.carousel", [400])
+    }); m.on("click", function() {
+        u.trigger("prev.owl.carousel", [400])
+    });
+
+
+
+    //header slider
+    $('.header-slider')['owlCarousel']({
+        loop: true,
+        margin: 30,
+        autoplay: true,
+        dots: false,
+        items: 1,
+        nav: true,
+        navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ]
+    });
+
+    //screenshot slider
+    $('.mobile-carousel-slider').owlCarousel({
+        loop:true,
+        margin:70,
+        dots:false,
+        nav:true,
+        smartSpeed: 700,
+        autoplay: 4000,
+        navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            800:{
+                items:1
+            },
+            1024:{
+                items:1
+            },
+            1200:{
+                items:1
+            }
+        }
+    });
+
+
+
+    //hero content slider
+    $('.hero-content-slider').owlCarousel({
+        loop:true,
+        margin:70,
+        dots:false,
+        nav:true,
+        smartSpeed: 700,
+        autoplay: 4000,
+        navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            800:{
+                items:1
+            },
+            1024:{
+                items:1
+            },
+            1200:{
+                items:1
+            }
+        }
+    });
+
+    //  4. client testimonial
+    $('.testimonial-slider').owlCarousel({
+        responsiveClass:true,
+        margin:20,
+        dots: false,
+        autoWidth:false,
+        nav: true,
+        autoplay:true,
+        navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+        autoplayTimeout: 3000,
+        autoplayStopOnLast: false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:2
+            },
+            800:{
+                items:2
+            },
+            1200:{
+                items:2
+            }
+
+        }
+
+    });
+
+    //  5. hero background slider
+    $('.hero-background-slider').owlCarousel({
+        loop: true,
+        items: 1,
+        autoplay: true,
+        dots: true,
+        nav: false,
+        autoplayTimeout:3400
+
+    });
+
+    // 6. customers slider
+    $('.customers-slider').owlCarousel({
+        autoplay: true,
+        loop: true,
+        margin:25,
+        dots:false,
+        slideTransition:'linear',
+        autoplayTimeout:4500,
+        autoplayHoverPause:true,
+        autoplaySpeed:4500,
+        responsive:{
+            0:{
+                items:2
+            },
+            500: {
+                items:3
+            },
+            600:{
+                items:3
+            },
+            800:{
+                items:4
+            },
+            1200:{
+                items:4
+            }
+
+        }
+
+    });
+
+    /* list_screen_slide Active
+     =============================*/
+    $('.list_screen_slide').owlCarousel({
+        loop: true,
+        responsiveClass: true,
+        nav: false,
+        margin: 5,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        smartSpeed: 500,
+        center: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1200: {
+                items: 5
+            }
+        }
+    });
+
+    //blog slider
+    $("#sliderBlog").owlCarousel({
+        items: 3,
+        dots: false,
+        margin: 30,
+        rewind: !0,
+        nav: true,
+        navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+        responsive: {
+            0:{
+                items:1
+            },
+            600:{
+                items:2
+            },
+            800:{
+                items:3
+            },
+            1200:{
+                items:3
+            }
+        }
+    });
+
+
+
+    // 7. magnify popup video
+    $('.video').magnificPopup({
+        type: 'iframe'
+    });
+
+    //  8. ytplayer for hero background video
+    $(".player").mb_YTPlayer();
+
+    //  9. typed
+    var typed = $(".typed");
+    $(function() {
+        typed.typed({
+            strings: ["Apple App Development.", "Android App.", "Windows Apps.", "App For Any Platform"],
+            typeSpeed: 130,
+            loop: true
+        });
+    });
+
+    // 10. back to top
+    (function(){
+
+        $('body').append('<div id="toTop"><span><i class="fa fa-angle-down"></i></span></div>');
+
+        $(window).on("scroll", function (e) {
+            if ($(this).scrollTop() != 0) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
             }
         });
-	}
 
-    function formCSuccess() {
-        $("#ContactForm")[0].reset();
-        submitCMSG(true, "Message Submitted!")
-    }
-
-    function formCError() {
-        $("#ContactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-            $(this).removeClass();
+        $('#toTop').on('click',function(){
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
         });
-	}
 
-    function submitCMSG(valid, msg) {
-        if (valid) {
-            var msgClasses = "h3 text-center tada animated";
-        } else {
-            var msgClasses = "h3 text-center";
-        }
-        $("#msgCSubmit").removeClass().addClass(msgClasses).text(msg);
-	}
+    }());
 
-
-	/* Back To Top Button */
-    // create the back to top button
-    $('body').prepend('<a href="body" class="back-to-top page-scroll">Back to Top</a>');
-    var amountScrolled = 700;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > amountScrolled) {
-            $('a.back-to-top').fadeIn('500');
-        } else {
-            $('a.back-to-top').fadeOut('500');
-        }
-    });
-
-
-	/* Removes Long Focus On Buttons */
-	$(".button, a, button").mouseup(function() {
-		$(this).blur();
-	});
-
-
-})(jQuery);
+}); // JQuery end
